@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scraped Books</title>
+</head>
+<body>
+
+<h1>Scraped Books</h1>
+
+{% for book in books %}
+
+    <p>
+        {{ book.title }}
+        -
+        {{ book.price }}
+    </p>
+
+{% endfor %}
+
+</body>
+</html>
