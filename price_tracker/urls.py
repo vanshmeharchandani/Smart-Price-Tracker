@@ -22,4 +22,14 @@ urlpatterns = [
     "update-price/<int:product_id>/",
     views.update_price,
     name="update_price"),
+
+    path(
+    "price-history/<int:product_id>/",
+    views.price_history,
+    name="price_history"),
+
+    path(
+    "update-all-prices/",
+    views.update_all_prices,
+    name="update_all_prices"),
 ]

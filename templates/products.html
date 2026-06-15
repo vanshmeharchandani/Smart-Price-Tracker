@@ -14,9 +14,75 @@
 
         <h1>Smart Price Tracker</h1>
 
-        <a href="/add-product/" class="btn btn-primary">
-            Add Product
-        </a>
+        <div>
+
+            <a href="{% url 'update_all_prices' %}"
+               class="btn btn-success">
+
+                Update All Prices
+
+            </a>
+
+            <a href="/add-product/"
+               class="btn btn-primary">
+
+                Add Product
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card text-center">
+
+                <div class="card-body">
+
+                    <h5>Total Products</h5>
+
+                    <h2>{{ total_products }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-center">
+
+                <div class="card-body">
+
+                    <h5>Ready To Buy</h5>
+
+                    <h2>{{ ready_to_buy }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-center">
+
+                <div class="card-body">
+
+                    <h5>Average Price</h5>
+
+                    <h2>{{ average_price }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -45,13 +111,13 @@
                     </p>
 
                     <p>
-                         <strong>Last Checked:</strong>
+                        <strong>Last Checked:</strong>
 
-                         {% if product.last_checked %}
-                         {{ product.last_checked }}
-                         {% else %}
+                        {% if product.last_checked %}
+                            {{ product.last_checked }}
+                        {% else %}
                             Never
-                          {% endif %}
+                        {% endif %}
                     </p>
 
                     {% if product.current_price <= product.target_price %}
@@ -73,22 +139,37 @@
                     <a href="{{ product.url }}"
                        target="_blank"
                        class="btn btn-success btn-sm">
+
                         View Product
+
                     </a>
 
                     <a href="{% url 'edit_product' product.id %}"
                        class="btn btn-warning btn-sm">
+
                         Edit
+
                     </a>
 
                     <a href="{% url 'delete_product' product.id %}"
                        class="btn btn-danger btn-sm">
+
                         Delete
+
                     </a>
 
                     <a href="{% url 'update_price' product.id %}"
                        class="btn btn-primary btn-sm">
+
                         Update Price
+
+                    </a>
+
+                    <a href="{% url 'price_history' product.id %}"
+                       class="btn btn-info btn-sm">
+
+                        History
+
                     </a>
 
                 </div>
@@ -99,7 +180,11 @@
 
         {% empty %}
 
-        <p>No products available.</p>
+        <div class="alert alert-info">
+
+            No products available.
+
+        </div>
 
         {% endfor %}
 

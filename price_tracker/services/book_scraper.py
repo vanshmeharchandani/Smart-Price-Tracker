@@ -7,7 +7,6 @@ def scrape_books():
     url = "https://books.toscrape.com"
 
     response = requests.get(url)
-    response.encoding = "utf-8"
 
     soup = BeautifulSoup(
         response.text,
@@ -22,7 +21,9 @@ def scrape_books():
 
         title = book.find(
             "h3"
-        ).find("a")["title"]
+        ).find(
+            "a"
+        )["title"]
 
         price = book.find(
             "p",
@@ -37,3 +38,27 @@ def scrape_books():
         )
 
     return products
+
+
+def get_book_price(url):
+
+    response = requests.get(url)
+
+    soup = BeautifulSoup(
+        response.text,
+        "lxml"
+    )
+
+    price = soup.find(
+        "p",
+        class_="price_color"
+    ).text
+
+    price = (
+        price
+        .replace("£", "")
+        .replace("Â", "")
+        .strip()
+    )
+
+    return float(price)
